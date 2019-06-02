@@ -4,22 +4,25 @@ const router = express.Router();
 
 /**
  * 检测用户是否存在
+ * url http://localhost:5159/user/detection
+ * 参数  wechart 微信号
  */
-router.post('/detectionUser', (req, res) => {
+router.post('/detection', (req, res) => {
     let data = req.body;
-    let count = parseInt(data.count);
-    if (isNaN(count) || count < 5) {
-        count = 100;
+    let wechart = data.wechart;
+    let sql = 'select * from `user` where wechart=?';
+    try {
+        pool.query(sql, [wechart], (err, result) => {
+            if (err) throw  err;
+            if (result.length > 0) {
+                res.send({code: 200, msg: '操作成功'})
+            } else {
+                res.send({code: 404, msg: '暂无此数据'})
+            }
+        });
+    } catch (e) {
+        res.send({code: 500, msg: '服务器内部错误'})
     }
-    let sql = 'select b.id,b.bookName,b.author,b.numberWord,t.name type from book b  join book_type t where t.id = b.typeId order by rand() limit 0,?';
-    pool.query(sql, [count], (err, result) => {
-        if (err) throw  err;
-        if (result.length > 0) {
-            res.send({code: 200, bookList: result})
-        } else {
-            res.send({code: 500, msg: '服务器内部错误'})
-        }
-    });
 });
 
 module.exports = router;
