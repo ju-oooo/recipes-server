@@ -1,0 +1,11 @@
+{
+  "name": "recipes-server",
+  "version": "1.0.0",
+  "description": "减肥食谱-接口",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "oooo",
+  "license": "ISC"
+}
