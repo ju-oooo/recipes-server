@@ -27,6 +27,7 @@ router.post('/', (req, res) => {
         res.send({code: 500, msg: '服务器内部错误'})
     }
 });
+
 /**
  * 根据类型获取菜品列表
  * url http://localhost:5159/cuisine/type
