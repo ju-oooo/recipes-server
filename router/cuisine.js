@@ -13,7 +13,7 @@ const router = express.Router();
 router.post('/', (req, res) => {
     let data = req.body;
     let pageParam = pagingTool(data.count, data.pageNum, 20);
-    let sql = 'SELECT id,title,description,img_url,food_material,cooking_step,type_id FROM `cuisine` LIMIT 0,?';
+    let sql = 'SELECT id,title,description,img_url,food_material,cooking_step,type_id FROM `cuisine` LIMIT ?,?';
     try {
         pool.query(sql, [pageParam.start, pageParam.end], (err, result) => {
             if (err) throw  err;
@@ -29,14 +29,14 @@ router.post('/', (req, res) => {
 });
 /**
  * 根据类型获取菜品列表
- * url http://localhost:5159/cuisine/
+ * url http://localhost:5159/cuisine/type
  * 参数  typeId 类型 count 显示条数  pageNum 页数
  */
 router.post('/type', (req, res) => {
     let data = req.body;
     let typeId = parseInt(data.typeId);
     let pageParam = pagingTool(data.count, data.pageNum, 20);
-    let sql = 'SELECT id,title,description,img_url,food_material,cooking_step,type_id FROM `cuisine` WHERE type_id=? LIMIT 0,?';
+    let sql = 'SELECT id,title,description,img_url,food_material,cooking_step,type_id FROM `cuisine` WHERE type_id=? LIMIT ?,?';
     try {
         pool.query(sql, [typeId, pageParam.start, pageParam.end], (err, result) => {
             if (err) throw  err;
