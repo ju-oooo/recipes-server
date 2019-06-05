@@ -23,3 +23,4 @@ server.use('/cuisine', cuisineRouter);
 server.use('/cuisineType', cuisineTypeRouter);
 //收藏模块
 server.use('/collect', collectRouter);
+console.log('http://localhost:5159/cuisine/details');

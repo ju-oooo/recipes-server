@@ -13,7 +13,7 @@ const router = express.Router();
 router.post('/', (req, res) => {
     let data = req.body;
     let pageParam = pagingTool(data.count, data.pageNum, 20);
-    let sql = 'SELECT id,title,description,img_url,food_material,cooking_step,type_id FROM `cuisine` LIMIT ?,?';
+    let sql = 'SELECT id,title,description,img_url FROM `cuisine` ORDER BY id LIMIT ?,?';
     try {
         pool.query(sql, [pageParam.start, pageParam.end], (err, result) => {
             if (err) throw  err;
@@ -37,6 +37,7 @@ router.post('/type', (req, res) => {
     let data = req.body;
     let typeId = parseInt(data.typeId);
     let pageParam = pagingTool(data.count, data.pageNum, 20);
+    console.log(typeId,pageParam)
     let sql = 'SELECT id,title,description,img_url,food_material,cooking_step,type_id FROM `cuisine` WHERE type_id=? LIMIT ?,?';
     try {
         pool.query(sql, [typeId, pageParam.start, pageParam.end], (err, result) => {
@@ -64,7 +65,7 @@ router.post('/details', (req, res) => {
         pool.query(sql, [id], (err, result) => {
             if (err) throw  err;
             if (result.length > 0) {
-                res.send({code: 200, cuisine: result[0]})
+                res.send({code: 200, details: result[0]})
             } else {
                 res.send({code: 404, msg: '暂无此数据'})
             }

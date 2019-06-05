@@ -13,7 +13,7 @@ let pagingTool = function (count, pageNum, defCount) {
         count = defCount;
         pageNum = 1;
     }
-    return {start: (pageNum - 1) * count, end: pageNum * count};
+    return {start: (pageNum - 1) * count, end: count};
 }
 
 module.exports = pagingTool;

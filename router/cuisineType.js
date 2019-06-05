@@ -14,7 +14,7 @@ router.post('/', (req, res) => {
         pool.query(sql, [id], (err, result) => {
             if (err) throw  err;
             if (result.length > 0) {
-                res.send({code: 200, cuisine: result})
+                res.send({code: 200, cuisineType: result})
             } else {
                 res.send({code: 404, msg: '暂无此数据'})
             }
