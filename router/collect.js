@@ -52,10 +52,11 @@ router.post('/del', (req, res) => {
  */
 router.post('/', (req, res) => {
     let data = req.body;
-    let id = parseInt(data.id);
-    let sql = 'SELECT id,cuisine_id,time,user_id FROM `collect`';
+    let userId = parseInt(data.userId);
+
+    let sql = 'SELECT id,cuisine_id,time,user_id FROM `collect` where user_id=?';
     try {
-        pool.query(sql, [id], (err, result) => {
+        pool.query(sql, [userId], (err, result) => {
             if (err) throw  err;
             if (result.length > 0) {
                 res.send({code: 200, cuisineList: result})
