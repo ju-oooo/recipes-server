@@ -49,7 +49,7 @@ router.post('/login', (req, res) => {
 });
 /**
  * 检测用户是否存在
- * url http://localhost:5159/user/detection
+ * url http://localhost:5159/user/register
  * 参数  wechart 微信号
  */
 router.post('/register', (req, res) => {
