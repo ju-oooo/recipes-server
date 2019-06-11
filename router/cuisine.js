@@ -37,8 +37,7 @@ router.post('/type', (req, res) => {
     let data = req.body;
     let typeId = parseInt(data.typeId);
     let pageParam = pagingTool(data.count, data.pageNum, 20);
-    console.log(typeId,pageParam)
-    let sql = 'SELECT id,title,description,img_url,food_material,cooking_step,type_id FROM `cuisine` WHERE type_id=? LIMIT ?,?';
+    let sql = 'SELECT id,title,description,img_url FROM `cuisine` WHERE type_id=? LIMIT ?,?';
     try {
         pool.query(sql, [typeId, pageParam.start, pageParam.end], (err, result) => {
             if (err) throw  err;
@@ -60,12 +59,24 @@ router.post('/type', (req, res) => {
 router.post('/details', (req, res) => {
     let data = req.body;
     let id = parseInt(data.id);
+    let userId = parseInt(data.userId);
     let sql = 'SELECT id,title,description,img_url,food_material,cooking_step,type_id FROM `cuisine` WHERE id=?';
     try {
         pool.query(sql, [id], (err, result) => {
-            if (err) throw  err;
             if (result.length > 0) {
-                res.send({code: 200, details: result[0]})
+                if (!userId) {
+                    res.send({code: 200, details: result[0]});
+                } else {
+                    let details = result[0];
+                    let sql = 'SELECT id FROM `collect` WHERE cuisine_id=? AND user_id=?';
+                    pool.query(sql, [id, userId], (err, result) => {
+                        if (result.length > 0) {
+                            res.send({code: 200, details: details, star: true});
+                        } else {
+                            res.send({code: 200, details: details, star: false});
+                        }
+                    });
+                }
             } else {
                 res.send({code: 404, msg: '暂无此数据'})
             }
