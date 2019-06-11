@@ -13,6 +13,8 @@ server.listen(5159);
 server.use(cors({
     origin: '*'
 }))
+//静态公共资源
+server.use(express.static('./public'))
 //post数据格式化
 server.use(bodyParser.urlencoded({extended: false}));
 //用户模块
