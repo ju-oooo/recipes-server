@@ -13,7 +13,8 @@ const router = express.Router();
 router.post('/', (req, res) => {
     let data = req.body;
     let pageParam = pagingTool(data.count, data.pageNum, 20);
-    let sql = 'SELECT id,title,description,img_url FROM `cuisine` ORDER BY id LIMIT ?,?';
+    // let sql = 'SELECT id,title,description,img_url FROM `cuisine` ORDER BY id LIMIT ?,?';
+    let sql = 'SELECT id,title,description,img_url FROM `cuisine` ORDER BY RAND() LIMIT ?,?';
     try {
         pool.query(sql, [pageParam.start, pageParam.end], (err, result) => {
             if (err) throw  err;
