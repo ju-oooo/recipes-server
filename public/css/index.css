@@ -1,0 +1,152 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    width: 100%;
+    height: 100%;
+    background-color: #161823;
+    position: relative;
+    min-width: 1200px;
+    font-size: 16px;
+    font-family: 'Microsoft YaHei', '微软雅黑', 'Microsoft JhengHei', '华文细黑', STHeiti, MingLiu;
+    line-height: 1px;
+}
+
+.container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    margin: 0 auto;
+    overflow: hidden;
+}
+
+.video-bg {
+    min-width: 70rem;
+    height: 55rem;
+    overflow: hidden;
+}
+
+.video-bg video {
+    border: 0;
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    min-width: 100%;
+    min-height: 100%;
+}
+
+.container .content {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0
+}
+
+.container .content .header {
+    height: 120px;
+    margin-top: 60px;
+    position: relative;
+    z-index: 3;
+}
+
+.content .header-left {
+    margin-left: 80px;
+    float: left;
+    height: 100%;
+}
+
+.content .header-left img {
+    width: 70px
+}
+
+.content .header-left > a {
+    display: flex;
+    height: 100%;
+    align-items: center;
+    text-decoration: none;
+    margin-top: -54px;
+}
+
+.content .header-right {
+    float: right;
+    margin-right: 150px;
+}
+
+.content .header-right .header-links {
+    list-style: none;
+}
+
+.header-links-item {
+    display: inline-block;
+    vertical-align: middle;
+    margin-left: 25px;
+}
+
+.header-links-item > span {
+    color: #fff;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, .7);
+    vertical-align: middle;
+}
+
+.content .middle {
+    width: 500px;
+    position: absolute;
+    bottom: 0;
+    transform: translateY(-50%);
+    right: 150px;
+}
+
+.middle .slogan {
+    float: right;
+    width: 500px;
+    margin-bottom: 50px;
+}
+
+.middle .slogan > img {
+    width: 100%;
+}
+
+.middle .btn-list {
+    float: right;
+    letter-spacing: -4px;
+    font-size: 0;
+}
+
+.middle .btn-list .icon-QRcode {
+    position: relative;
+    width: 100px;
+    height: 100px;
+}
+
+.middle .btn-list .icon-QRcode > img {
+    width: 100%;
+}
+
+.middle .btn-list .btn-primary {
+    display: inline-block;
+    border-radius: 5px;
+    margin-left: 10px;
+    transition: .15s opacity;
+    transition-delay: .15s;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    box-shadow: 1px 1px 7px 2px rgba(0, 0, 0, .54);
+}
+
+.middle .btn-list .icon-ios, .middle .btn-list .icon-andorid {
+    width: 100%;
+    height: 100%;
+    display: block;
+    border-radius: 5px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    opacity: 1;
+    transition: .15s all;
+    text-decoration: none;
+}
+
